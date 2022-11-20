@@ -18,7 +18,7 @@ def view_data_lst(data, title):
 
 
 def get_value():
-    return input('введите числоЖ ')
+    return input('введите число: ')
 
 
 def get_op():
