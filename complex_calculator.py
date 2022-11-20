@@ -6,59 +6,59 @@ x = [0, 0]
 y = [0, 0]
 
 
-def c_sum():
+def complex_sum():
     a = x[0]
     b = x[1]
     c = y[0]
     d = y[1]
-    re = a + c
-    im = b + d
-    return [re, im]
+    real = a + c
+    imaginary = b + d
+    return [real, imaginary]
 
 
-def c_minus():
+def complex_minus():
     a = x[0]
     b = x[1]
     c = y[0]
     d = y[1]
-    re = a - c
-    im = b - d
-    return [re, im]
+    real = a - c
+    imaginary = b - d
+    return [real, imaginary]
 
 
-def c_mult():
+def complex_mult():
     a = x[0]
     b = x[1]
     c = y[0]
     d = y[1]
-    re = a * c - b * d
-    im = b * c + a * d
-    return [re, im]
+    real = a * c - b * d
+    imaginary = b * c + a * d
+    return [real, imaginary]
 
 
-def c_div():
+def complex_div():
     a = x[0]
     b = x[1]
     c = y[0]
     d = y[1]
-    re = (a * c + b * d) / (c ** 2 + d ** 2)
-    im = (b * c - a * d) / (c ** 2 + d ** 2)
-    return [re, im]
+    real = (a * c + b * d) / (c ** 2 + d ** 2)
+    imaginary = (b * c - a * d) / (c ** 2 + d ** 2)
+    return [real, imaginary]
 
 
-def init(compnumb1, compnumb2):
+def init(comp_numb1, comp_numb2):
     global x
     global y
-    x = compnumb1
-    y = compnumb2
+    x = comp_numb1
+    y = comp_numb2
 
 
-def do_it(op):
-    if op == "+":
-        return c_sum()
-    elif op == "-":
-        return c_minus()
-    elif op == "*":
-        return c_mult()
-    elif op == "/":
-        return c_div()
+def do_it(culculation):
+    if culculation == "+":
+        return complex_sum()
+    elif culculation == "-":
+        return complex_minus()
+    elif culculation == "*":
+        return complex_mult()
+    elif culculation == "/":
+        return complex_div()
