@@ -2,13 +2,15 @@
 Модуль распознавания строки как арифметического вычисления
 """
 
-# Вычисление числа слева от указанной позиции
+signs_list = ['+', '-', '*', '/', '(', ')']
+
+# вычисление первого числа
 
 
 def previous_digit(string_expression, position):
     position -= 1
     previous = ''
-    while position >= 0 and not string_expression[position] in ['+', '-', '*', '/', '(', ')']:
+    while position >= 0 and not string_expression[position] in signs_list:
         previous = string_expression[position] + previous
         position -= 1
     if string_expression[position] == '-':
@@ -21,10 +23,26 @@ def previous_digit(string_expression, position):
 def next_digit(string_expression, position):
     position += 1
     next_digit = ''
-    while position <= len(string_expression)-1 and not string_expression[position] in ['+', '-', '*', '/', '(', ')']:
+    while position <= len(string_expression)-1 and not string_expression[position] in signs_list:
         next_digit = next_digit + string_expression[position]
         position += 1
     return next_digit
+
+# вычисление членов и знаков вычисления
+
+def find_calc_operands(string_expression):
+    a = 0
+    b = 0
+    sing = ''
+    for i in signs_list:
+        if i in string_expression:
+            sing = i
+            break
+    pos = string_expression.index(sing)
+    a = previous_digit(string_expression, pos)
+    b = next_digit(string_expression, pos)
+    return a, b, sing
+
 
 # Замена в строке двух чисел на их частное для первой найденной операции деления
 
@@ -128,17 +146,17 @@ def is_bracket_ok(string_expression):
 
 # тело программы
 
-
-try:
-    user_expression = \
-        input("Введите выражение для вычисления значения (Можно использовать операции +, -, *, /): ").replace(' ', '')
-    if is_bracket_ok(user_expression) == 0:
-        while '(' in user_expression:
-            user_expression = bracket_expression(user_expression)
-        user_expression = simple_expression(user_expression)
-        print("Результат вычисления: ", round(float(user_expression), 5))
-    else:
-        print('Несоответствие открытых и закрытых скобок')
-
-except Exception as err:
-    print('Возникла ошибка: ', str(err.args))
+#
+# try:
+#     user_expression = \
+#         input("Введите выражение для вычисления значения (Можно использовать операции +, -, *, /): ").replace(' ', '')
+#     if is_bracket_ok(user_expression) == 0:
+#         while '(' in user_expression:
+#             user_expression = bracket_expression(user_expression)
+#         user_expression = simple_expression(user_expression)
+#         print("Результат вычисления: ", round(float(user_expression), 5))
+#     else:
+#         print('Несоответствие открытых и закрытых скобок')
+#
+# except Exception as err:
+#     print('Возникла ошибка: ', str(err.args))

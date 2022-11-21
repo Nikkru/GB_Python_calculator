@@ -1,6 +1,7 @@
 """
 Модуль связи интерфейса и модели
 """
+import calc_string
 import model_complex_calculator as cc
 import model_real_calculator as rc
 import calc_view
@@ -8,9 +9,12 @@ import logger as log
 
 
 def button_click():
-    value_a = calc_view.get_value()
-    value_op = calc_view.get_op()
-    value_b = calc_view.get_value()
+    calc_str = calc_view.get_calc_str()
+    # value_a = calc_view.get_value()
+    # value_op = calc_view.get_op()
+    # value_b = calc_view.get_value()
+
+    value_a, value_b, value_op = calc_string.find_calc_operands(calc_str)
 
     if 'i' in value_a or 'i' in value_b:
         value_a_lst = list(map(int, value_a.replace('i', '').split('+')))
