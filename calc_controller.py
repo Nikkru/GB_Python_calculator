@@ -10,22 +10,23 @@ import logger as log
 
 def button_click():
     calc_str = calc_view.get_calc_str()
-    value_a, value_b, value_op = calc_string.find_calc_operands(calc_str)
+    calc_str_list = calc_string.calc_list(calc_str)
 
-    if 'i' in value_a or 'i' in value_b:
-        value_a_lst = list(map(int, value_a.replace('i', '').split('+')))
-        value_b_lst = list(map(int, value_b.replace('i', '').split('+')))
-        cc.init(value_a_lst, value_b_lst)
-        result = cc.do_it(value_op)
-        log_res = calc_view.view_data_lst(result, "result")
-        log_str = f'{value_a} {value_op} {value_b} = {log_res}'
+    if 'i' in calc_str_list:
+        res = 'Простите, операции с комплексными числами пока недотупны.'
+        # log_res = calc_view.view_data_lst(result, "result")
+        calc_view.print_message(res)
+        log_str = calc_str
     else:
-        value_a = int(value_a)
-        value_b = int(value_b)
-        rc.init(value_a, value_b)
-        result = rc.do_it(value_op)
-        calc_view.view_data(result, "result")
-        log_str = f'{value_a} {value_op} {value_b} = {result}'
+        if rc.is_bracket_ok(calc_str) == 0:
+            while '(' in calc_str:
+                calc_str = rc.bracket_expression(calc_str)
+            res = rc.simple_expression(calc_str)
+            result = round(float(res), 5)
+            print("Результат вычисления: ", result)
+        else:
+            print('Несоответствие открытых и закрытых скобок')
+        log_str = f'{calc_str} = {result}'
 
     log.log_operation(log_str)
 

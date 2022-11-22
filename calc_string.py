@@ -43,3 +43,8 @@ def find_calc_operands(string_expression):
     a = previous_digit(string_expression, pos)
     b = next_digit(string_expression, pos)
     return a, b, sing
+
+
+def calc_list(string_expression):
+    c_list = list(string_expression.strip())
+    return c_list
