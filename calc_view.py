@@ -16,14 +16,6 @@ def view_data_lst(data, title):
         print(f'{title} = {data[0]}')
         return f'{data[0]}'
 
-
-def get_value():
-    return input('введите число: ')
-
-
-def get_op():
-    return input('введите вычисление (+, -, *, /): ')
-
 # метод получения строки вычисления
 
 
