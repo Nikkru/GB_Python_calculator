@@ -20,4 +20,4 @@ def view_data_lst(data, title):
 
 
 def get_calc_str():
-    return input('введите требуемое вычисление: ')
+    return input('введите требуемое вычисление: ').replace(' ', '')
